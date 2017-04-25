@@ -35,6 +35,16 @@
   [super paste:sender];
 }
 
+// Disabling paste universally for all textinputs in the application
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+  if (action == @selector(paste:))
+    return NO;
+
+  return [super canPerformAction:action withSender:sender];
+}
+
+
 - (void)reactWillMakeFirstResponder
 {
   _jsRequestingFirstResponder = YES;
